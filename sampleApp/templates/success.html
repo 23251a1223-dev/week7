@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Success</title>
+</head>
+<body>
+
+<h1>Registration Successful!</h1>
+
+<p>Thank you {{ name }}.</p>
+
+<a href="{{ url_for('welcome', name=name) }}">
+    <button>Continue</button>
+</a>
+
+</body>
+</html>
