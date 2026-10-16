@@ -1,28 +1,22 @@
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def home():
+    if request.method == 'POST':
+        return register()
     return render_template('register.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        name = request.form.get('name', '').strip()
-        email = request.form.get('email', '').strip()
+        name = request.form.get('name', '')
+        email = request.form.get('email', '')
         password = request.form.get('password', '')
         confirm = request.form.get('confirm', '')
-
-        if not name or not email or not password or not confirm:
-            return render_template(
-                'register.html',
-                error='Please fill in all fields.',
-                name=name,
-                email=email
-            )
 
         if password != confirm:
             return render_template(
@@ -37,7 +31,7 @@ def register():
     return render_template('register.html')
 
 
-@app.route('/welcome/<name>')
+@app.route('/welcome/<name>', methods=['GET'])
 def welcome(name):
     return render_template('welcome.html', name=name)
 

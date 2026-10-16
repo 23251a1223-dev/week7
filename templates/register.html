@@ -11,7 +11,7 @@
 <p style="color:red;">{{ error }}</p>
 {% endif %}
 
-<form method="POST">
+<form action="/register" method="POST">
 
     <label>Name:</label><br>
     <input type="text" name="name" value="{{ name if name else '' }}"><br><br>
