@@ -6,9 +6,11 @@ app = Flask(__name__)
 def home():
     return render_template('register.html')
 
-@app.route('/register', methods=['POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-    return render_template('success.html')
+    if request.method == 'POST':
+        return render_template('success.html')
+    return render_template('register.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
